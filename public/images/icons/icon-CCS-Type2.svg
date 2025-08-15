@@ -1,0 +1,13 @@
+<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.58563 1.75684C3.27906 3.11033 2.47534 4.95243 2.47534 6.98225C2.47534 11.138 5.84422 14.5068 9.99993 14.5068C14.1556 14.5068 17.5245 11.138 17.5245 6.98225C17.5245 4.95243 16.7208 3.11033 15.4142 1.75684H4.58563Z" fill="#BEBEE0"/>
+<rect x="3" y="15.7568" width="14" height="5" rx="2.5" fill="#BEBEE0"/>
+<circle cx="5.5" cy="18.2568" r="1.5" fill="white"/>
+<circle cx="14.5" cy="18.2568" r="1.5" fill="white"/>
+<ellipse cx="7.5" cy="3.75684" rx="1" ry="1" fill="white"/>
+<ellipse cx="12.5" cy="3.75684" rx="1" ry="1" fill="white"/>
+<circle cx="5.5" cy="7.25684" r="1.5" fill="white"/>
+<circle cx="10" cy="7.25684" r="1.5" fill="white"/>
+<circle cx="14.5" cy="7.25684" r="1.5" fill="white"/>
+<circle cx="7.25" cy="10.7568" r="1.5" fill="white"/>
+<circle cx="12.75" cy="10.7568" r="1.5" fill="white"/>
+</svg>

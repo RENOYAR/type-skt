@@ -1,4 +1,3 @@
-// @ts-nocheck
 import styled from 'styled-components';
 
 export const RadioboxWrapper = styled.div`
@@ -8,16 +7,21 @@ export const RadioboxWrapper = styled.div`
   margin-right: 20px;
 `;
 
-export const StyledRadio = styled.input`
+interface StyledRadioProps {
+  $large?: boolean;
+  disabled?: boolean;
+}
+
+export const StyledRadio = styled.input<StyledRadioProps>`
   appearance: none;
   display: inline-block;
   position: relative;
-  width: ${props => (props.$large ? '20px' : '16px')};
-  height: ${props => (props.$large ? '20px' : '16px')};
+  width: ${({$large}) => ($large ? '20px' : '16px')};
+  height: ${({$large}) => ($large ? '20px' : '16px')};
   margin: 0;
   border: 1px solid #caccd7;
   border-radius: 50%;
-  background-color: ${props => props.theme.color.white};
+  background-color: ${({theme}) => theme.color.white};
   background-repeat: no-repeat;
   background-size: contain;
   transition: all 150ms;
@@ -28,16 +32,16 @@ export const StyledRadio = styled.input`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: ${props => (props.$large ? '10px' : '8px')};
-    height: ${props => (props.$large ? '10px' : '8px')};
+    width: ${({$large}) => ($large ? '10px' : '8px')};
+    height: ${({$large}) => ($large ? '10px' : '8px')};
     border-radius: 50%;
-    background-color: ${props => props.theme.color.primary};
+    background-color: ${({theme}) => theme.color.primary};
     opacity: 0;
     transition: opacity 0.2s;
   }
 
   &:checked {
-    border: 1px solid ${props => props.theme.color.primary};
+    border: 1px solid ${({theme}) => theme.color.primary};
     &:after {
       opacity: 1;
     }
@@ -48,11 +52,11 @@ export const StyledRadio = styled.input`
   }
 
   &:checked:disabled {
-    border: 1px solid ${props => props.theme.color.gray4};
+    border: 1px solid ${({theme}) => theme.color.gray4};
     opacity: 1;
 
     &:after {
-      background-color: ${props => props.theme.color.gray4};
+      background-color: ${({theme}) => theme.color.gray4};
     }
   }
 
@@ -62,14 +66,16 @@ export const StyledRadio = styled.input`
   }
 `;
 
-export const StyledRadioBoxText = styled.span`
+interface StyledRadioBoxTextProps {
+  $disabled?: boolean;
+}
+
+export const StyledRadioBoxText = styled.span<StyledRadioBoxTextProps>`
   margin-left: 8px;
-  font-size: ${props => props.theme.fontSize.fontSize3};
+  font-size: ${({theme}) => theme.fontSize.fontSize3};
   line-height: 20px;
-  color: ${props =>
-    props.disabled
-      ? `${props.theme.color.textDimed}`
-      : `${props.theme.color.gray8}`};
+  color: ${({$disabled, theme}) =>
+    $disabled ? theme.color.textDimed : theme.color.gray8};
   font-weight: 400;
 `;
 

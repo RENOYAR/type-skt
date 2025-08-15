@@ -1,9 +1,21 @@
-// @ts-nocheck
+import {ChangeEventHandler, ReactNode} from 'react';
 import {
   CheckboxWrapper,
   StyledCheckBoxText,
   StyledCheckbox,
 } from './StyledCheckbox';
+
+interface CheckBoxProps {
+  id?: string;
+  name?: string;
+  text?: ReactNode;
+  disabled?: boolean;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  className?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  widthSize?: string | number;
+}
 
 export default function CheckBox({
   id,
@@ -15,9 +27,9 @@ export default function CheckBox({
   className,
   onChange,
   widthSize,
-}) {
+}: CheckBoxProps) {
   return (
-    <CheckboxWrapper>
+    <CheckboxWrapper style={{width: widthSize}}>
       <StyledCheckbox
         type="checkbox"
         id={id}
@@ -30,7 +42,7 @@ export default function CheckBox({
       />
       <label htmlFor={id}>
         {text && (
-          <StyledCheckBoxText disabled={disabled}>{text}</StyledCheckBoxText>
+          <StyledCheckBoxText $disabled={disabled}>{text}</StyledCheckBoxText>
         )}
       </label>
     </CheckboxWrapper>

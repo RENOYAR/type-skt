@@ -1,4 +1,3 @@
-// @ts-nocheck
 import styled from 'styled-components';
 
 export const CheckboxWrapper = styled.div`
@@ -14,9 +13,9 @@ export const StyledCheckbox = styled.input`
   width: 18px;
   height: 18px;
   margin: 0;
-  border: 1px solid ${props => props.theme.color.textDimed};
+  border: 1px solid ${({theme}) => theme.color.textDimed};
   border-radius: 2px;
-  background-color: ${props => props.theme.color.white};
+  background-color: ${({theme}) => theme.color.white};
   background-repeat: no-repeat;
   background-size: contain;
   transition: all 150ms;
@@ -41,23 +40,33 @@ export const StyledCheckbox = styled.input`
   }
 `;
 
-export const StyledCheckBoxText = styled.span`
+interface StyledCheckBoxTextProps {
+  $disabled?: boolean;
+}
+
+export const StyledCheckBoxText = styled.span<StyledCheckBoxTextProps>`
   margin-left: 9px;
-  font-size: ${props => props.theme.fontSize.fontSize3};
+  font-size: ${({theme}) => theme.fontSize.fontSize3};
   line-height: 20px;
-  color: ${props =>
-    props.disabled
-      ? `${props.theme.color.textDimed}`
-      : `${props.theme.color.gray8}`};
+  color: ${({$disabled, theme}) =>
+    $disabled ? theme.color.textDimed : theme.color.gray8};
   font-weight: 400;
 `;
 
-export const CheckFlexWrap = styled.div`
+interface CheckFlexWrapProps {
+  $start?: boolean;
+  $column?: boolean;
+  $gap?: string;
+  $width?: string;
+}
+
+export const CheckFlexWrap = styled.div<CheckFlexWrapProps>`
   display: flex;
-  align-items: ${props => (props.$start ? 'start' : 'center')};
-  flex-direction: ${props => (props.$column ? 'column' : '')};
-  gap: ${props => props.$gap || '8px'};
-  width: ${props => (props.$width ? `calc(${props.$width})` : '100%')};
+  align-items: ${({$start}) => ($start ? 'start' : 'center')};
+  flex-direction: ${({$column}) => ($column ? 'column' : '')};
+  gap: ${({$gap}) => $gap || '8px'};
+  width: ${({$width}) => ($width ? `calc(${$width})` : '100%')};
+
   & + & {
     margin-top: 12px;
   }

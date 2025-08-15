@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, {ReactNode, useState, MouseEventHandler} from 'react';
 import {ButtonStyle, ButtonIcon} from './StyledButton';
 
@@ -9,9 +8,7 @@ interface ButtonProps {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: MouseEventHandler<HTMLButtonElement>;
-  $size?: 'small' | 'medium' | 'large';
-  $variant?: 'primary' | 'secondary' | 'tertiary';
-  $icon?: string; // icon 파일명
+  $icon?: string;
   isSelected?: boolean;
   $iconOnly?: boolean;
   $width?: string | number;
@@ -28,21 +25,15 @@ export default function Button({
   className,
   onClick,
   onMouseDown,
-  $size,
-  $variant,
   $icon,
-  isSelected,
   $iconOnly,
-  $width,
-  $minWidth,
   $toggle,
   $toggleDefault = false,
-  $marginLeft,
 }: ButtonProps) {
   const [toggle, setToggle] = useState($toggleDefault);
 
-  const handleToggleClick = () => {
-    setToggle(!toggle);
+  const handleToggleClick: MouseEventHandler<HTMLButtonElement> = () => {
+    setToggle(prev => !prev);
   };
 
   return $iconOnly ? (
@@ -64,14 +55,7 @@ export default function Button({
       disabled={disabled}
       onClick={onClick}
       onMouseDown={onMouseDown}
-      className={className}
-      $size={$size}
-      $variant={$variant}
-      $icon={$icon}
-      $width={$width}
-      $minWidth={$minWidth}
-      $marginLeft={$marginLeft}
-      isSelected={isSelected}>
+      className={className}>
       {children}
     </ButtonStyle>
   );

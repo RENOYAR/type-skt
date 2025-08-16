@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Anchor000 from '../pages/anchor/Anchor000';
 import Anchor001 from '../pages/anchor/Anchor001';
 import Anchor010 from '../pages/anchor/Anchor010';

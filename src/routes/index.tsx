@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import PublishingRoute from './PublishingRoute';
 import SubLayout from '../components/layout/SubLayout';

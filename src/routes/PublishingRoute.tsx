@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {Route, Routes} from 'react-router-dom';
 import PublishingList from 'pages/PublishingList';
 import publishdata from 'pages/guide/publishdata';

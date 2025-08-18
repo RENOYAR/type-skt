@@ -1,8 +1,18 @@
-// @ts-nocheck
 import styled from 'styled-components';
-import closeIcon from '/images/icons/icon-close.svg';
 
-export const Dim = styled.div`
+interface ModalProps {
+  $oversize?: boolean;
+  opacity?: number;
+  width?: string | number;
+  height?: string | number;
+  $modalData?: boolean;
+  $modalguide?: boolean;
+  $noneOver?: boolean;
+  $marginBottom?: string;
+  $height?: string;
+  $borderNone?: boolean;
+}
+export const Dim = styled.div<ModalProps>`
   position: fixed;
   left: 0;
   top: 0;
@@ -14,7 +24,7 @@ export const Dim = styled.div`
   ${props => (props.$oversize ? 'overflow-y: auto' : '')}
 `;
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div<ModalProps>`
   position: absolute;
   top: ${props => (props.$oversize ? '120px' : '50%')};
   ${props => props.$oversize && 'padding-top: 120px'};
@@ -24,7 +34,7 @@ export const ModalWrapper = styled.div`
   z-index: 200;
 `;
 
-export const ModalBox = styled.div`
+export const ModalBox = styled.div<ModalProps>`
   position: relative;
   ${props => props.$oversize && 'bottom: 120px'};
   width: ${props => props.width};
@@ -34,16 +44,17 @@ export const ModalBox = styled.div`
   background-color: ${props => props.theme.color.white};
 `;
 
-export const ModalClose = styled.button`
+export const ModalClose = styled.button<ModalProps>`
   position: absolute;
   right: 28px;
   top: ${props => (props.$modalData ? '24px' : '18px')};
   width: 24px;
   height: 24px;
-  background: url(${closeIcon}) no-repeat;
+  background: url(${process.env.PUBLIC_URL}/images/icons/icon-close.svg)
+    no-repeat;
 `;
 
-export const ModalHeaderWrapper = styled.div`
+export const ModalHeaderWrapper = styled.div<ModalProps>`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -57,20 +68,20 @@ export const ModalHeaderWrapper = styled.div`
   border-bottom: 1px solid ${props => props.theme.color.gray2};
 `;
 
-export const ModalHeaderTitle = styled.div`
+export const ModalHeaderTitle = styled.div<ModalProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 `;
 
-export const ModalHeaderFlex = styled.div`
+export const ModalHeaderFlex = styled.div<ModalProps>`
   display: flex;
   align-items: center;
   padding-right: 38px;
 `;
 
-export const ModalGuide = styled.div`
+export const ModalGuide = styled.div<ModalProps>`
   display: ${props => (props.$modalguide ? 'block' : 'none')};
   position: relative;
   margin-left: 19px;
@@ -89,7 +100,7 @@ export const ModalGuide = styled.div`
   }
 `;
 
-export const ModalData = styled.div`
+export const ModalData = styled.div<ModalProps>`
   display: ${props => (props.$modalData ? 'flex' : 'none')};
   align-items: center;
   justify-content: space-between;
@@ -101,14 +112,14 @@ export const ModalData = styled.div`
   font-weight: 400;
 `;
 
-export const ModalContentWrapper = styled.div`
+export const ModalContentWrapper = styled.div<ModalProps>`
   overflow-y: ${props => (props.$noneOver ? 'unset' : 'auto')};
   height: ${props => props.$height};
   padding: 24px 31px 0 32px;
   margin-bottom: ${prosp => prosp.$marginBottom};
 `;
 
-export const ModalFooterWrapper = styled.div`
+export const ModalFooterWrapper = styled.div<ModalProps>`
   position: relative;
   display: flex;
   align-items: center;

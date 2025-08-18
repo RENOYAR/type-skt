@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {FooterWrap} from './StyledLayout';
 export default function Footer() {
   return (

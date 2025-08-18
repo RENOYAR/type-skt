@@ -1,15 +1,14 @@
-// @ts-nocheck
-import {useRef, useState} from 'react';
+import {useRef, useState, ChangeEvent} from 'react';
 import Button from 'components/button/Button';
 import {FileUploderWrap} from './StyledFileUploader';
 
 export default function FileUploader() {
-  const fileInputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState('');
 
-  const handleFileChange = event => {
-    const file = event.target.files?.[0];
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] ?? null;
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
@@ -17,9 +16,7 @@ export default function FileUploader() {
   };
 
   const handleClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+    fileInputRef.current?.click();
   };
 
   return (

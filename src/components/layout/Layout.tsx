@@ -1,6 +1,10 @@
-// @ts-nocheck
+import {ReactNode} from 'react';
 import {LayoutWrap} from './StyledLayout';
 
-export default function Layout({children}) {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export default function Layout({children}: LayoutProps) {
   return <LayoutWrap>{children}</LayoutWrap>;
 }

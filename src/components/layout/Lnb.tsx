@@ -1,34 +1,35 @@
-// @ts-nocheck
 import {useState, useRef, useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
 import {
   LnbWrap,
   LnbHeader,
   LnbHeaderLogo,
   LnbBody,
   LnbList,
-  LnbItem,
   LnbFooter,
   SidebarButton,
 } from './StyledLayout';
-import {Link} from 'react-router-dom';
 import Icon from '../icon/Icon';
 import {menuItemData} from './menuitemdata';
 import LnbMenu from './LnbMenu';
 
 export default function Lnb() {
-  const LnbWrapRef = useRef();
-  const [collapse, setCollapse] = useState(false);
-  const [sidebarWidth, setSidebarWidth] = useState(296);
+  const LnbWrapRef = useRef<HTMLDivElement | null>(null);
+  const [collapse, setCollapse] = useState<boolean>(false);
+  const [sidebarWidth, setSidebarWidth] = useState<number>(296);
 
   const handleClick = () => {
-    setCollapse(!collapse);
-    setSidebarWidth(!collapse ? 60 : 296);
+    setCollapse(prev => !prev);
+    setSidebarWidth(prev => (prev === 296 ? 60 : 296));
   };
 
   useEffect(() => {
-    const mainContentWrap = document?.querySelector('.main-content-wrap');
-    LnbWrapRef.current.style.width = `${sidebarWidth}px`;
+    const mainContentWrap = document?.querySelector(
+      '.main-content-wrap',
+    ) as HTMLElement | null;
+
+    if (LnbWrapRef.current) {
+      LnbWrapRef.current.style.width = `${sidebarWidth}px`;
+    }
 
     if (sidebarWidth <= 296) {
       mainContentWrap?.setAttribute('style', `margin-left: ${sidebarWidth}px`);
@@ -50,10 +51,9 @@ export default function Lnb() {
       </LnbHeader>
       <LnbBody className="lnb-wrap">
         <LnbList className="lnb-list">
-          {menuItemData &&
-            menuItemData.map((data, id) => (
-              <LnbMenu items={data} key={id} collapse={collapse} />
-            ))}
+          {menuItemData?.map((data, index) => (
+            <LnbMenu items={data} key={index} collapse={collapse} />
+          ))}
         </LnbList>
       </LnbBody>
       <LnbFooter className={`lnb-footer ${collapse ? 'collapse' : ''}`}>

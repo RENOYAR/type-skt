@@ -16,6 +16,8 @@ interface ButtonProps {
   $toggle?: boolean;
   $toggleDefault?: boolean;
   $marginLeft?: string | number;
+  $size?: 'small' | 'medium' | 'large';
+  $variant?: 'primary' | 'secondaryGray';
 }
 
 export default function Button({

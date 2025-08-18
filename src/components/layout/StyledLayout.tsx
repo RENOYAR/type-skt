@@ -1,5 +1,8 @@
-// @ts-nocheck
 import styled from 'styled-components';
+interface ButtonWrapProps {
+  $absolute?: boolean;
+  $borderNone?: boolean;
+}
 
 export const LayoutWrap = styled.div`
   background-color: ${props => props.theme.color.white};
@@ -276,7 +279,7 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const ButtonWrap = styled.div`
+export const ButtonWrap = styled.div<ButtonWrapProps>`
   position: ${props => (props.$absolute ? 'absolute' : 'relative')};
   display: flex;
   align-items: center;
@@ -284,10 +287,10 @@ export const ButtonWrap = styled.div`
   width: calc(100% - 40px);
   padding: 23px 0 30px 0;
   margin: 0 auto;
-  /* border-top: 1px solid ${props => props.theme.color.gray2}; */
   border-top: ${props =>
     props.$borderNone ? 'none' : `1px solid ${props.theme.color.gray2}`};
   ${props => props.$absolute && 'left: 20px; bottom: 0;'}
+
   > button + button {
     margin-left: 8px;
   }

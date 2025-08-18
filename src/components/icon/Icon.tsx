@@ -1,5 +1,14 @@
-// @ts-nocheck
+import {ReactNode} from 'react';
 import {IconStyle} from './StyledIcon';
+
+interface IconProps {
+  $name: string;
+  $widthSize: number;
+  $heightSize: number;
+  children?: ReactNode;
+  onClick?: () => void;
+  className?: string;
+}
 
 export default function Icon({
   $name,
@@ -8,11 +17,11 @@ export default function Icon({
   children,
   onClick,
   className,
-}) {
+}: IconProps) {
   return (
     <IconStyle
       className={`icon ${className || ''}`}
-      $name={$name && $name}
+      $name={$name}
       $widthSize={$widthSize}
       $heightSize={$heightSize}
       onClick={onClick}>

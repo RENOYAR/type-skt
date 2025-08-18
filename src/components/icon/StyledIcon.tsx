@@ -1,15 +1,20 @@
-// @ts-nocheck
 import styled, {css} from 'styled-components';
 
-export const IconStyle = styled.div`
+interface IconStyleProps {
+  $name?: string;
+  $widthSize: number;
+  $heightSize: number;
+}
+
+export const IconStyle = styled.div<IconStyleProps>`
   display: inline-flex;
-  width: ${props => props.$widthSize}px;
-  height: ${props => props.$heightSize}px;
-  ${props =>
-    props.$name &&
+  width: ${({$widthSize}) => $widthSize}px;
+  height: ${({$heightSize}) => $heightSize}px;
+
+  ${({$name}) =>
+    $name &&
     css`
-      background: url('/images/icons/${props.$name}.svg') no-repeat center /
-        cover;
+      background: url('/images/icons/${$name}.svg') no-repeat center / cover;
     `}
 
   vertical-align: middle;

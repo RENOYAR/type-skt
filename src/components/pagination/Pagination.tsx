@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {useState} from 'react';
 import Icon from '../icon/Icon';
 import {StyledPagination, PaginationNavButton} from './StyledPagination';

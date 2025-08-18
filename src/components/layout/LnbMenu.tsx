@@ -1,29 +1,46 @@
-// @ts-nocheck
-import {useState} from 'react';
-import {useLocation} from 'react-router-dom';
+import {useState, MouseEvent} from 'react';
+import {useLocation, Link} from 'react-router-dom';
 import {LnbItem} from './StyledLayout';
-import {Link} from 'react-router-dom';
 import Icon from '../icon/Icon';
 import LnbDropdown from './LnbDropdown';
 
-export default function LnbMenu({items, collapse}) {
+interface Submenu {
+  id: number;
+  title: string;
+  url: string;
+}
+
+interface MenuItem {
+  id?: string | number; // <-- optional 로 수정
+  ic?: number; // <-- optional
+  url: string;
+  title: string;
+  icon: string;
+  hicon?: string;
+  submenu?: Submenu[];
+}
+
+interface LnbMenuProps {
+  items: MenuItem;
+  collapse: boolean;
+}
+
+export default function LnbMenu({items, collapse}: LnbMenuProps) {
   const [isActive, setIsActive] = useState(false);
   const [hover, setHover] = useState(false);
 
   const handleActive = () => {
-    setIsActive(!isActive);
+    setIsActive(prev => !prev);
   };
 
-  const handleDepth = e => {
-    setIsActive(!isActive);
+  const handleDepth = (e: MouseEvent<HTMLDivElement>) => {
+    setIsActive(prev => !prev);
     e.currentTarget.classList.toggle('active');
   };
-  const MouseOver = () => {
-    setHover(true);
-  };
-  const MouseOut = () => {
-    setHover(false);
-  };
+
+  const MouseOver = () => setHover(true);
+  const MouseOut = () => setHover(false);
+
   const iconSize = collapse ? 24 : 20;
 
   const location = useLocation();
